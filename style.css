@@ -19,6 +19,7 @@ header {
 header h1{
     padding:40px;
     font-size:100px;
+    
 }
 header ul{
     display:flex;
@@ -52,14 +53,11 @@ header h6 a {
     color:white;
 }
 header .latest-season{
-    display:block;
-    border:1px solid black;
     padding:15px 30px;
     font-size:23px;
     font-weight: 200;
     margin:10px auto;
     background: inherit;
-    cursor: pointer;
     color:white;
 }
 header .play-btn{
@@ -333,7 +331,7 @@ footer .footer-icons{
 }
 
 .notification h4 span{
-    color:rgb(235, 33, 33);
+    color:white;
 }
 
 .image-container{
@@ -390,8 +388,8 @@ header ul a{
     top:50px;
     height: 95%;
     right:0;
-    background-color:rgb(255, 255, 255);
-    border:1px solid rgb(177, 103, 103);
+    background-color:white;
+    border:1px solid black;
     min-height:50vh;
 }
 #cart h2{
@@ -402,7 +400,7 @@ header ul a{
 .cart-btn-bottom{
     display:flex;
     padding:15px;
-    background-color: black;
+    background-color: red;
     border:none;
     border-radius:7px;
     margin:auto;
@@ -410,7 +408,7 @@ header ul a{
 }
 .cart-bottom{
     text-decoration: none;
-    color:red;
+    color:black;
     font-size: 16px;
     font-weight:700;
 }
