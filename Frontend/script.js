@@ -1,5 +1,37 @@
 const cart_items = document.querySelector('#cart .cart-items');
 
+window.addEventListener('DOMContentLoaded',()=>{
+    axios.get('http://localhost:3000/products')
+    .then(data=>{
+        if(data.request.status===200){
+            const products=data.data.products;
+            const parentSection=document.getElementById('f1-merch');
+            
+            products.forEach(product=>{
+
+                const prodHtml=`<div id="team-content">
+                <div id=${product.title}>
+                    <h3>${product.description}</h3>
+                    <div class="image-container">
+                        <img src="${product.imageUrl}" alt="${product.title}" class="prod-images">
+                    </div>
+                    <div class="prod-details">
+                        <span>
+                            Rs <span>${product.price}</span>
+                        </span>
+                        <button class="shop-item-button" type="button">Add to Cart</button>
+                    </div>
+                </div> `
+
+                parentSection.innerHTML+=prodHtml;
+            })
+            
+        }
+        
+    });
+})
+
+
 
 const parentContainer = document.getElementById('Ecommerce-Container');
 parentContainer.addEventListener('click',(e)=>{

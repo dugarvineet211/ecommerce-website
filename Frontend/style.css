@@ -8,7 +8,8 @@ header {
     text-align: center;
     margin:0;
     background: url('./imgs/backgrounds/f1-2021-background.jpg') no-repeat center center fixed;
-    padding: 10px;
+    padding-top: 100px;
+    padding-bottom: 100px;
     color:white;
 }
 
