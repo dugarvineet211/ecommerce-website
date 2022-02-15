@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     .then(data=>{
         if(data.request.status===200){
             const products=data.data.products;
+            console.log(products);
             const parentSection=document.getElementById('f1-merch');
             
             products.forEach(product=>{
@@ -19,7 +20,7 @@ window.addEventListener('DOMContentLoaded',()=>{
                         <span>
                             Rs <span>${product.price}</span>
                         </span>
-                        <button class="shop-item-button" type="button">Add to Cart</button>
+                        <button class="shop-item-button" type="button" onclick="addToCart(${product.id})">Add to Cart</button>
                     </div>
                 </div> `
 
@@ -102,4 +103,16 @@ parentContainer.addEventListener('click',(e)=>{
         e.target.parentNode.parentNode.remove()
     }
 })
+
+
+function addToCart(productId)
+{
+    axios.post('http://localhost:3000/cart',{productId:productId})
+    .then(response=>{
+        console.log(response);
+    })
+    .catch(error=>{
+        console.log(error);
+    });
+}
 

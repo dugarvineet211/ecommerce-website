@@ -102,7 +102,7 @@ exports.postCart = (req, res, next) => {
       });
     })
     .then(() => {
-      res.redirect('/cart');
+      res.status(200).json({success:true,message:'Added to Cart'});
     })
     .catch(err => console.log(err));
 };
