@@ -5,7 +5,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     .then(data=>{
         if(data.request.status===200){
             const products=data.data.products;
-            console.log(products);
             const parentSection=document.getElementById('f1-merch');
             
             products.forEach(product=>{
@@ -79,7 +78,10 @@ parentContainer.addEventListener('click',(e)=>{
         },2500)
     }
     if (e.target.className=='cart-btn-bottom' || e.target.className=='cart-bottom' || e.target.className=='cart-holder'){
-        document.querySelector('#cart').style = "display:block;"
+        const cartContainer=document.getElementById('cart');
+        cartContainer.innerHTML='';
+        getCartDetails();
+        
     }
     if (e.target.className=='cancel'){
         document.querySelector('#cart').style = "display:none;"
@@ -109,10 +111,28 @@ function addToCart(productId)
 {
     axios.post('http://localhost:3000/cart',{productId:productId})
     .then(response=>{
-        console.log(response);
+        //console.log(response);
     })
     .catch(error=>{
         console.log(error);
     });
+}
+
+function getCartDetails()
+{
+    axios.get('http://localhost:3000/cart')
+    .then(response=>{
+        
+        if(response.status===200)
+        {
+            response.data.products.forEach(product=>{
+                const cartContainer=document.getElementById('cart');
+                cartContainer.innerHTML+=`<li>${product.description}-${product.cartItem.quantity}-${product.price}`
+            })
+        }
+        document.querySelector('#cart').style = "display:block;"
+
+    })
+    .catch(err=>console.log(err));
 }
 

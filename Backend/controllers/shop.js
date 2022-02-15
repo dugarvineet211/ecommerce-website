@@ -62,11 +62,12 @@ exports.getCart = (req, res, next) => {
       return cart
         .getProducts()
         .then(products => {
-          res.render('shop/cart', {
-            path: '/cart',
-            pageTitle: 'Your Cart',
-            products: products
-          });
+          // res.render('shop/cart', {
+          //   path: '/cart',
+          //   pageTitle: 'Your Cart',
+          //   products: products
+          // });
+          res.status(200).json({success:true,products:products});
         })
         .catch(err => console.log(err));
     })
@@ -102,9 +103,10 @@ exports.postCart = (req, res, next) => {
       });
     })
     .then(() => {
-      res.status(200).json({success:true,message:'Added to Cart'});
+      res.status(200).json({success:true,message:'Added your product to Cart'});
     })
-    .catch(err => console.log(err));
+    .catch(
+      err=>res.status(500).json({success:false, message:'Error occured while adding to cart!'}));
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
